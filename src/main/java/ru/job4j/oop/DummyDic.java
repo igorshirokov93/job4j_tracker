@@ -7,7 +7,14 @@ package ru.job4j.oop;
  */
 
 public class DummyDic {
-    public void engToRus(String eng) {
+    public String engToRus() {
+        String eng = "capital";
+        return eng;
+    }
 
+    public static void main(String[] args) {
+        DummyDic man = new DummyDic();
+        String say = man.engToRus();
+        System.out.println("Неизвестное слово: " + say);
     }
 }
