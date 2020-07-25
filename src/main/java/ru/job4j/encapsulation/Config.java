@@ -23,7 +23,13 @@ public class Config {
         return search(key);
     }
 
-    public String search(String key) {
+    /**
+     * Приватные методы используются для внутренней логики.
+     * Метод search подготавливает данные и результат его работы доступен из метода
+     * public String getProperty(String key) {
+     * который в свою очередь может так же внести свои коррективы в результат работы приватного метода
+     */
+    private String search(String key) {
         return key;
     }
 }
