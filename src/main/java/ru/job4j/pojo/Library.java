@@ -2,8 +2,8 @@ package ru.job4j.pojo;
 
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
- * @version $1$
- * @since 25.07.2020.
+ * @version $2$
+ * @since 26.07.2020.
  */
 
 public class Library {
@@ -32,7 +32,8 @@ public class Library {
         System.out.println("Shown only books titled Clean Code:");
         for (int index = 0; index < books.length; index++) {
             Book bs = books[index];
-            if (bs.equals(cleancode)) {
+            /** Т.к. класс Book не содержит equals, то просто получаю имя книги и сравниваю с "Clean code" */
+            if (bs.getTitle().equals(cleancode.getTitle())) {
                 System.out.println(bs.getTitle() + " - " + bs.getPages());
             }
         }
