@@ -42,15 +42,28 @@ public class Tracker {
         return Arrays.copyOf(found, matched);
     }
 
-    public Item findById(int id) {
-        Item rsl = null;
+    public boolean replace(int id, Item item) {
+        int index = indexOf(id);
+        item.setId(id);
+        items[index] = item;
+        return true;
+    }
+
+    private int indexOf(int id) {
+        int rsl = -1;
         for (int index = 0; index < size; index++) {
-            Item item = items[index];
-            if (item.getId() == id) {
-                rsl = item;
+            if (items[index].getId() == id) {
+                rsl = index;
                 break;
             }
         }
         return rsl;
+    }
+
+    public Item findById(int id) {
+        /* Находим индекс */
+        int index = indexOf(id);
+        /* Если индекс найден возвращаем item, иначе null */
+        return index != -1 ? items[index] : null;
     }
 }
