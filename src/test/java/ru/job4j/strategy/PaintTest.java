@@ -23,10 +23,10 @@ public class PaintTest {
         assertThat(
                 new String(out.toByteArray()),
                 is(
-                        "|------|" + "\r\n"
-                                + "|      |" + "\r\n"
-                                + "|      |" + "\r\n"
-                                + "|______|" + "\r\n"
+                        "|------|" + System.lineSeparator()
+                                + "|      |" + System.lineSeparator()
+                                + "|      |" + System.lineSeparator()
+                                + "|______|" + System.lineSeparator()
                 )
         );
         // возвращаем обратно стандартный вывод в консоль.

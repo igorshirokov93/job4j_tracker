@@ -12,10 +12,10 @@ public class SquareTest {
         assertThat(
                 square.draw(),
                 is(
-                        "|------|" + "\r\n"
-                                + "|      |" + "\r\n"
-                                + "|      |" + "\r\n"
-                                + "|______|" + "\r\n"
+                        "|------|" + System.lineSeparator()
+                                + "|      |" + System.lineSeparator()
+                                + "|      |" + System.lineSeparator()
+                                + "|______|" + System.lineSeparator()
                 )
         );
     }

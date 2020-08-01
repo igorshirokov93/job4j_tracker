@@ -12,9 +12,9 @@ public class TriangleTest {
         assertThat(
                 triangle.draw(),
                 is(
-                        "   ^    " + "\r\n"
-                                + " /   \\ " + "\r\n"
-                                + "/_____\\" + "\r\n"
+                        "   ^    " + System.lineSeparator()
+                                + " /   \\ " + System.lineSeparator()
+                                + "/_____\\" + System.lineSeparator()
                 )
         );
     }
