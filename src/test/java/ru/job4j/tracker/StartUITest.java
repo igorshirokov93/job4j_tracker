@@ -24,6 +24,22 @@ public class StartUITest {
     }
 
     @Test
+    public void ShowAllAction() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Add item"));
+        Input in = new StubInput(
+                new String[]{"0", "1"}
+        );
+        UserAction[] actions = {
+                new ShowAllAction(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(item.getName(), is("Add item"));
+    }
+
+    @Test
     public void whenReplaceItem() {
         Tracker tracker = new Tracker();
         /* Добавим в tracker новую заявку */
@@ -59,6 +75,40 @@ public class StartUITest {
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()), is(nullValue()));
+    }
+
+    @Test
+    public void FindByIdAction() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item item1 = tracker.add(new Item("Petya"));
+        Item item2 = tracker.add(new Item("Find item by Id"));
+        Input in = new StubInput(
+                new String[]{"0", String.valueOf(item2.getId()), "1"}
+        );
+        UserAction[] actions = {
+                new FindByIdAction(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertTrue(out.toString().contains("Find item by Id"));
+    }
+
+    @Test
+    public void findByNameAction() {
+        Tracker tracker = new Tracker();
+        Output out = new StubOutput();
+        Item item = tracker.add(new Item("Find Item by Name"));
+        String foundName = "Find Item by Name";
+        Input in = new StubInput(
+                new String[]{"0", foundName, "1"}
+        );
+        UserAction[] actions = {
+                new FindByNameAction(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(item.getName(), is(foundName));
     }
 
     @Test
