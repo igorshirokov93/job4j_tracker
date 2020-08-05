@@ -14,22 +14,24 @@ public class UserStore {
             if (users[i].getUsername().equals(login)) {
                 user = users[i];
                 break;
-            } else {
-                throw new UserNotFoundException("Пользователь: " + login + " - не найден!");
             }
+        }
+        if (user == null) {
+            throw new UserNotFoundException("Пользователь: " + login + " - не найден!");
         }
         return user;
     }
 
     public static boolean validate(User user) throws UserInvalidException {
-        boolean result;
-        if (user.getUsername().length() < 3 || !user.isValid()) {
-            throw new UserInvalidException("Пользователь не валидный!");
-        } else {
-            result = true;
+        if (user.getUsername().length() < 3) {
+            throw new UserInvalidException("Имя пользователя состоит менее чем из трех символов!");
         }
-        return result;
+        if (!user.isValid()) {
+            throw new UserInvalidException("Пользователь не валидный!");
+        }
+        return true;
     }
+
 
     public static void main(String[] args) {
         try {
