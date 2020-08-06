@@ -2,8 +2,8 @@ package ru.job4j.tracker;
 
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
- * @version $6$
- * @since 02.08.2020.
+ * @version $7$
+ * @since 06.08.2020.
  */
 
 public class StartUI {
@@ -32,7 +32,7 @@ public class StartUI {
 
     public static void main(String[] args) {
         Output output = new ConsoleOutput();
-        Input input = new ConsoleInput();
+        Input input = new ValidateInput();
         Tracker tracker = new Tracker();
         UserAction[] actions = {
                 new CreateAction(output),
