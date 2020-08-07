@@ -2,8 +2,8 @@ package ru.job4j.tracker;
 
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
- * @version $3$
- * @since 06.08.2020.
+ * @version $4$
+ * @since 07.08.2020.
  */
 
 public class StubInput implements Input {
@@ -27,10 +27,9 @@ public class StubInput implements Input {
     @Override
     public int askInt(String question, int max) {
         int select = askInt(question);
-        if (select >= 0 && select < max) {
-            return select;
-        } else {
+        if (select < 0 || select >= max) {
             throw new IllegalStateException(String.format("Out of about %s > [0, %s]", select, max));
         }
+        return select;
     }
 }
