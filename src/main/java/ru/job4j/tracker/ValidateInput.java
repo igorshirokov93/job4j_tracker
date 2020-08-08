@@ -6,7 +6,7 @@ package ru.job4j.tracker;
  * @since 7.08.2020.
  */
 
-public class ValidateInput extends ConsoleInput {
+public class ValidateInput implements Input {
 
     private final Output out;
     private final Input in;
