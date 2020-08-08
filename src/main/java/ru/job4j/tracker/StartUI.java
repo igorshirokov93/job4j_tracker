@@ -2,8 +2,8 @@ package ru.job4j.tracker;
 
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
- * @version $8$
- * @since 07.08.2020.
+ * @version $9$
+ * @since 08.08.2020.
  */
 
 public class StartUI {
@@ -18,6 +18,10 @@ public class StartUI {
         while (run) {
             showMenu(actions);
             int select = input.askInt("Enter select: ");
+            if (select < 0 || select >= actions.length) {
+                out.println("Wrong input, you can select: 0 .. " + (actions.length - 1));
+                continue;
+            }
             UserAction action = actions[select];
             run = action.execute(input, tracker);
         }

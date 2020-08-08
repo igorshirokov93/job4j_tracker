@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
- * @version $3$
- * @since 07.08.2020.
+ * @version $4$
+ * @since 08.08.2020.
  */
 
 public class ConsoleInput implements Input {
@@ -20,14 +20,5 @@ public class ConsoleInput implements Input {
     @Override
     public int askInt(String question) {
         return Integer.valueOf(askStr(question));
-    }
-
-    @Override
-    public int askInt(String question, int max) {
-        int select = askInt(question);
-        if (select < 0 || select >= max) {
-            throw new IllegalStateException(String.format("Out of about %s > [0, %s]", select, max));
-        }
-        return select;
     }
 }

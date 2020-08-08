@@ -7,6 +7,7 @@ import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.*;
 
 public class StartUITest {
+    private static final String LN = System.lineSeparator();
 
     @Test
     public void whenCreateItem() {
@@ -126,5 +127,26 @@ public class StartUITest {
                 "Menu." + System.lineSeparator() +
                         "0. Exit" + System.lineSeparator()
         ));
+    }
+
+    @Test
+    public void whenWrongInput() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[]{"7", "0"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "Menu." + LN +
+                        "0. Exit" + LN
+                        + "Wrong input, you can select: 0 .. 0" + LN
+                        + "Menu." + LN
+                        + "0. Exit" + LN
+        ));
+        /** этим тестом мы проверяем неверный пункт меню */
     }
 }
