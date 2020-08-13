@@ -78,29 +78,30 @@ public class TrackerTest {
 
     @Test
     public void whenCreateTrackerWithEnumThenItSingleton() {
-        TrackerSingleEnum tracker1 = TrackerSingleEnum.INSTANCE;
-        TrackerSingleEnum tracker2 = TrackerSingleEnum.INSTANCE;
+        TrackerSingleEnum tracker = TrackerSingleEnum.INSTANCE;
+        Tracker tracker1 = tracker.getTracker();
+        Tracker tracker2 = tracker.getTracker();
         assertThat(tracker1, is(tracker2));
     }
 
     @Test
     public void whenCreateTrackerWithStaticFieldAndLazyLoadingThenItSingleton() {
-        TrackerSingleLazy tracker1 = TrackerSingleLazy.getInstance();
-        TrackerSingleLazy tracker2 = TrackerSingleLazy.getInstance();
+        Tracker tracker1 = TrackerSingleLazy.getInstance();
+        Tracker tracker2 = TrackerSingleLazy.getInstance();
         assertThat(tracker1, is(tracker2));
     }
 
     @Test
     public void whenCreateTrackerWithStaticFinalFieldAndEagerLoadingThenItSingleton() {
-        TrackerSingleEager tracker1 = TrackerSingleEager.getInstance();
-        TrackerSingleEager tracker2 = TrackerSingleEager.getInstance();
+        Tracker tracker1 = TrackerSingleEager.getInstance();
+        Tracker tracker2 = TrackerSingleEager.getInstance();
         assertThat(tracker1, is(tracker2));
     }
 
     @Test
     public void whenCreateTrackerInFieldOfInnerClassThenItSingleton() {
-        TrackerSingleHolder tracker1 = TrackerSingleHolder.getInstance();
-        TrackerSingleHolder tracker2 = TrackerSingleHolder.getInstance();
+        Tracker tracker1 = TrackerSingleHolder.getInstance();
+        Tracker tracker2 = TrackerSingleHolder.getInstance();
         assertThat(tracker1, is(tracker2));
     }
 }
