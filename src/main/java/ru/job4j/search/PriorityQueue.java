@@ -4,8 +4,8 @@ import java.util.LinkedList;
 
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
- * @version $1$
- * @since 19.08.2020.
+ * @version $2$
+ * @since 20.08.2020.
  */
 
 public class PriorityQueue {
@@ -20,11 +20,9 @@ public class PriorityQueue {
     public void put(Task task) {
         int index = 0;
         for (Task element : tasks) {
-            if (element.getPriority() < task.getPriority()) {
-                index++;
+            if (element.getPriority() >= task.getPriority()) {
                 break;
-            }
-
+            } else index++;
         }
         this.tasks.add(index, task);
     }
