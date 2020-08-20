@@ -1,9 +1,11 @@
 package ru.job4j.tracker;
 
+import java.util.List;
+
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
- * @version $2$
- * @since 2.08.2020.
+ * @version $3$
+ * @since 20.08.2020.
  */
 
 public class ShowAllAction implements UserAction {
@@ -20,9 +22,9 @@ public class ShowAllAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        Item[] items = tracker.findAll();
-        for (int i = 0; i < items.length; i++) {
-            System.out.println(items[i]);
+        List<Item> items = tracker.findAll();
+        for (Item item : items) {
+            System.out.println(item);
         }
         return true;
     }
