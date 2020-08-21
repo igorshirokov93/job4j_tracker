@@ -12,7 +12,7 @@ import java.util.Random;
  */
 
 public class Tracker {
-    ArrayList<Item> items = new ArrayList<Item>();
+    private final List<Item> items = new ArrayList<Item>();
     private int ids = 1;
     private int size = 0;
 
@@ -27,7 +27,7 @@ public class Tracker {
     }
 
     public List<Item> findByName(String key) {
-        ArrayList<Item> ids = new ArrayList<Item>();
+        List<Item> ids = new ArrayList<Item>();
         for (Item item : items) {
             if (key.equals(item.getName())) {
                 ids.add(item);
