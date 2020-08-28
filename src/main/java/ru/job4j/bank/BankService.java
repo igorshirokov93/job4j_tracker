@@ -7,8 +7,8 @@ import java.util.Map;
 
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
- * @version $2$
- * @since 27.08.2020.
+ * @version $3$
+ * @since 28.08.2020.
  */
 
 public class BankService {
@@ -60,14 +60,14 @@ public class BankService {
      */
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
-        boolean rsl = false;
+        boolean rsl = true;
         Account srcAccount = findByRequisite(srcPassport, srcRequisite);
         Account destAccount = findByRequisite(destPassport, destRequisite);
-        if (destAccount != null & srcAccount != null & srcAccount.getBalance() >= amount) {
-            srcAccount.setBalance(srcAccount.getBalance() - amount);
-            destAccount.setBalance(destAccount.getBalance() + amount);
-            rsl = true;
+        if (destAccount == null || srcAccount == null || srcAccount.getBalance() < amount) {
+            rsl = false;
         }
+        srcAccount.setBalance(srcAccount.getBalance() - amount);
+        destAccount.setBalance(destAccount.getBalance() + amount);
         return rsl;
     }
 }
