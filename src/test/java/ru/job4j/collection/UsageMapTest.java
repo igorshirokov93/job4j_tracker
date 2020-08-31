@@ -2,20 +2,17 @@ package ru.job4j.collection;
 
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.util.Map;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class UsageMapTest {
     @Test
-    public void main() {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-        UsageMap.main(null);
-        String ln = System.lineSeparator();
-        String expected = "freelancerigor@yandex.ru = Shirokov Igor Vladislavovich" + ln;
-        assertThat(out.toString(), is(expected));
+    public void testPutItem() {
+        UsageMap uMap = new UsageMap();
+        Map<String, String> expected = Map.of("freelancerigor@yandex.ru", "Shirokov Igor Vladislavovich");
+        Map<String, String> result = uMap.putItem("freelancerigor@yandex.ru", "Shirokov Igor Vladislavovich");
+        assertThat(result, is(expected));
     }
 }

@@ -1,20 +1,18 @@
 package ru.job4j.collection;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
- * @version $1$
- * @since 25.08.2020.
+ * @version $2$
+ * @since 31.08.2020.
  */
 
 public class UsageMap {
-    public static void main(String[] args) {
-        HashMap<String, String> map = new HashMap<>();
-        map.put("freelancerigor@yandex.ru", "Shirokov Igor Vladislavovich");
-        for (String key : map.keySet()) {
-            String value = map.get(key);
-            System.out.println(key + " = " + value);
-        }
+    public Map<String, String> putItem(String key, String value) {
+        Map<String, String> map = new HashMap<>();
+        map.put(key, value);
+        return map;
     }
 }
