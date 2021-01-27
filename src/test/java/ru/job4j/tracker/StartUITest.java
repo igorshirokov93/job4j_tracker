@@ -30,7 +30,7 @@ public class StartUITest {
 
 
     @Test
-    public void ShowAllAction() {
+    public void showAllAction() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Add item"));
@@ -78,7 +78,7 @@ public class StartUITest {
     }
 
     @Test
-    public void FindByIdAction() {
+    public void findByIdAction() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
         Item item1 = tracker.add(new Item("Petya"));
@@ -123,8 +123,8 @@ public class StartUITest {
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + System.lineSeparator() +
-                        "0. Exit" + System.lineSeparator()
+                "Menu." + System.lineSeparator()
+                        + "0. Exit" + System.lineSeparator()
         ));
     }
 
@@ -140,8 +140,8 @@ public class StartUITest {
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + LN +
-                        "0. Exit" + LN
+                "Menu." + LN
+                        + "0. Exit" + LN
                         + "Wrong input, you can select: 0 .. 0" + LN
                         + "Menu." + LN
                         + "0. Exit" + LN
