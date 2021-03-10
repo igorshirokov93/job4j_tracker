@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 
 public class SearchAtt {
 
-    private static List<Attachment> filter(List<Attachment> list, Predicate<Attachment> predicate) {
+    static List<Attachment> filter(List<Attachment> list, Predicate<Attachment> predicate) {
         List<Attachment> result = new ArrayList<>();
         for (Attachment att : list) {
             if (predicate.test(att)) {
