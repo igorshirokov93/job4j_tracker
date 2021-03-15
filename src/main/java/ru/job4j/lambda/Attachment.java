@@ -27,11 +27,15 @@ public class Attachment {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Attachment)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Attachment)) {
+            return false;
+        }
         Attachment that = (Attachment) o;
-        return size == that.size &&
-                Objects.equals(name, that.name);
+        return size == that.size
+                && Objects.equals(name, that.name);
     }
 
     @Override
