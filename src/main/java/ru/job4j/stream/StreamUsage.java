@@ -6,14 +6,31 @@ import java.util.stream.Collectors;
 
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
- * @version $1$
- * @since 11.03.2021.
+ * @version $2$
+ * @since 15.03.2021.
  */
 
 public class StreamUsage {
+    public static class Task {
+        private final String name;
+        private final long spent;
+
+        public Task(String name, long spent) {
+            this.name = name;
+            this.spent = spent;
+        }
+    }
+
     public static void main(String[] args) {
-        List<Integer> source = Arrays.asList(-3, 0, 26, -85, 15, -68, 37, -19, 152);
-        List<Integer> dest = source.stream().filter(x -> x > 0).collect(Collectors.toList());
-        System.out.println(dest);
+        List<Task> tasks = List.of(
+                new Task("Bug #1", 10),
+                new Task("Task #2", 20),
+                new Task("Bug #3", 40)
+        );
+        tasks.stream()
+                .filter(task -> task.name.contains("Bug"))
+                .filter(task -> task.spent > 30)
+                .map(task -> task.name + " " + task.spent)
+                .forEach(System.out::println);
     }
 }
