@@ -6,18 +6,41 @@ import java.util.ArrayList;
 import java.util.Map;
 
 /**
+ * Класс описывает работу банковского сервиса.
+ *
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
- * @version $3$
- * @since 28.08.2020.
+ * @version $4$
+ * @since 28.03.2021.
  */
 
 public class BankService {
+    /**
+     * Класс связывает владельца(User) с его счетами(Account).
+     * User хранится в ключе
+     * В значении хранится список Account
+     */
     private Map<User, List<Account>> users = new HashMap<>();
 
+    /**
+     * Метод добавляет User в список, если в списке такого User еще нет
+     *
+     * @param user принимает в качестве параметра User,
+     *             который должен быть добавлен в списке
+     */
     public void addUser(User user) {
         users.putIfAbsent(user, new ArrayList<Account>());
     }
 
+    /**
+     * Метод добавляет новый Account в список счетов User'а
+     * Сначала ищет владельца счета в списке users
+     * по его паспортным данным (String passport)
+     * Если User найден, и добавляемого счёта в списке его счетов нет,
+     * то производится добавление счёта в список.
+     *
+     * @param passport принимает параметром паспортные данные в формате строки
+     * @param account  принимает параметром счёт, который нужно добавить
+     */
     public void addAccount(String passport, Account account) {
         User user = findByPassport(passport);
         if (user != null) {
@@ -28,35 +51,50 @@ public class BankService {
         }
     }
 
+    /**
+     * Метод ищет владельца счёта в списке users по его паспортным данным
+     *
+     * @param passport принимает параметром паспортные данные в формате строки
+     * @return возвращает User, если владелец счета найден в перечне users, или null
+     */
     public User findByPassport(String passport) {
-        for (User user : users.keySet()) {
-            if (user.getPassport().equals(passport)) {
-                return user;
-            }
-        }
-        return null;
+        return users.keySet()
+                .stream()
+                .filter(user -> user.getPassport().equals(passport))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
-     * Метод ищет счёт пользователя по реквизитам. Сначала нужно найти пользователя,
-     * а потом получить список счетов этого пользователя и в нём найти нужный счёт.
+     * Метод ищет счет по реквизитам и паспортным данным владельца счета
+     *
+     * @param passport  принимает параметром паспортные данные в формате строки
+     * @param requisite принимает параметром реквизиты в формате строки
+     * @return Если счет найден, возвращает Account. Если не найден, то null
      */
     public Account findByRequisite(String passport, String requisite) {
         User user = findByPassport(passport);
         if (user != null) {
-            List<Account> account = users.get(user);
-            for (Account score : account) {
-                if (score.getRequisite().equals(requisite)) {
-                    return score;
-                }
-            }
+            return users.get(user)
+                    .stream()
+                    .filter(account -> account.getRequisite().equals(requisite))
+                    .findFirst()
+                    .orElse(null);
         }
         return null;
     }
 
     /**
-     * Метод для перечисления денег с одного счёта на другой счёт.
-     * Если счёт не найден или не хватает денег на счёте srcAccount (с которого переводят), то метод должен вернуть false.
+     * Метод осуществляет перевод между счетами
+     *
+     * @param srcPassport   - паспортные данные владельца,
+     *                      со счета которого осуществляется перевод
+     * @param srcRequisite  - реквизиты счета, с которого осуществляется перевод
+     * @param destPassport  - паспортные данные владельца,
+     *                      на счет которого осуществляется перевод
+     * @param destRequisite - реквизиты счета, на который осуществляется перевод
+     * @param amount        - сумма перевода
+     * @return true, если перевод успешен, в противном случае false.
      */
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
