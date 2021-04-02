@@ -2,8 +2,8 @@ package ru.job4j.stream;
 
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
- * @version $1$
- * @since 01.04.2021.
+ * @version $2$
+ * @since 02.04.2021.
  */
 
 public class Worker {
@@ -21,6 +21,18 @@ public class Worker {
 
     private double salary;
 
+    @Override
+    public String toString() {
+        return "Worker{" +
+                "name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", age=" + age +
+                ", manufactory='" + manufactory + '\'' +
+                ", personnel=" + personnel +
+                ", standing=" + standing +
+                ", salary=" + salary +
+                '}';
+    }
 
     static class Builder {
         private String name;
