@@ -23,15 +23,15 @@ public class Worker {
 
     @Override
     public String toString() {
-        return "Worker{" +
-                "name='" + name + '\'' +
-                ", gender='" + gender + '\'' +
-                ", age=" + age +
-                ", manufactory='" + manufactory + '\'' +
-                ", personnel=" + personnel +
-                ", standing=" + standing +
-                ", salary=" + salary +
-                '}';
+        return "Worker{"
+                + "name='" + name + '\''
+                + ", gender='" + gender + '\''
+                + ", age=" + age
+                + ", manufactory='" + manufactory + '\''
+                + ", personnel=" + personnel
+                + ", standing=" + standing
+                + ", salary=" + salary
+                + '}';
     }
 
     static class Builder {
