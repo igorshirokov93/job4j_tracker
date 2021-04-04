@@ -3,7 +3,6 @@ package ru.job4j.collection;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
@@ -15,7 +14,7 @@ public class ConvertListTest {
         List<int[]> in = new ArrayList<>();
         in.add(new int[]{1});
         in.add(new int[]{2, 3});
-        List<Integer> expect = Arrays.asList(1, 2, 3);
+        List<Integer> expect = List.of(1, 2, 3);
         assertThat(ConvertList.convert(in), is(expect));
     }
 
@@ -25,7 +24,7 @@ public class ConvertListTest {
         in.add(new int[]{1, 2});
         in.add(new int[]{3, 4, 5});
         in.add(new int[]{6, 7, 8, 9});
-        List<Integer> expect = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        List<Integer> expect = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
         assertThat(ConvertList.convert(in), is(expect));
     }
 
@@ -36,7 +35,7 @@ public class ConvertListTest {
         in.add(new int[]{7, 4, 5});
         in.add(new int[]{6, 3, 8, 9});
         in.add(new int[]{10, 12});
-        List<Integer> expect = Arrays.asList(1, 0, 7, 4, 5, 6, 3, 8, 9, 10, 12);
+        List<Integer> expect = List.of(1, 0, 7, 4, 5, 6, 3, 8, 9, 10, 12);
         assertThat(ConvertList.convert(in), is(expect));
     }
 }
